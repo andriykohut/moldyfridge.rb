@@ -1,3 +1,4 @@
+require 'formatador'
 require_relative 'db'
 
 class Utils
@@ -33,13 +34,20 @@ class MoldyFridge
     @db.create_tables
   end
 
-  def list_food(order_by=:time_brought)
+  def get_food(order_by=:time_brought)
+    table_data = []
     @db.get_all_food(order_by).each do |food|
       name = food[:food_name]
       brought = food[:time_brought].localtime
       age = Utils::seconds_to_string (Time.now - brought).round
-      puts "#{name}\tBrought: #{brought}, age: #{age}"
+      table_data << {id: food[:id],name: name, brought: brought, age: age}
     end
+    table_data
+  end
+
+  def list_food(order_by=:time_brought, columns=[:id, :name, :age])
+    table_data = get_food(order_by)
+    Formatador.display_table(table_data, columns)
   end
 
   def insert(name)
