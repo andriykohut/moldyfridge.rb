@@ -37,7 +37,7 @@ class MoldyFridge
     @db.get_all_food(order_by).each do |food|
       name = food[:food_name]
       brought = food[:time_brought].localtime
-      age = Utils::seconds_to_string(Time.now - brought)
+      age = Utils::seconds_to_string (Time.now - brought).round
       puts "#{name}\tBrought: #{brought}, age: #{age}"
     end
   end
