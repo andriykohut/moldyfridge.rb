@@ -25,6 +25,8 @@ def run(fridge)
     fridge.remove food
   when 'drop', 'clear'
     fridge.clear
+  when 'search', 'find'
+    fridge.search food
   else
     puts "Error"
   end

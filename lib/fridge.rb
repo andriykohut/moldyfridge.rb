@@ -60,4 +60,9 @@ class MoldyFridge
   def clear
     @db.drop_tables
   end
+
+  def search(name)
+    food = @db.search name
+    Formatador.display_table(food)
+  end
 end

@@ -32,6 +32,10 @@ class FoodDatabase
     @db[:food].order(order_by).all
   end
 
+  def search(string)
+    @db['select * from food where upper(food_name) like upper(?)', "%#{string}%"]
+  end
+
   def drop_tables
     @db.drop_table? :food
   end
