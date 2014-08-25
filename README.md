@@ -1,7 +1,9 @@
 moldyfridge
 ===========
 
-simple fridge manager
+simple fridge tracker
+
+### it's mold or you!
 
 ```
 $ ./fridge.rb ls
